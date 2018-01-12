@@ -21,7 +21,7 @@ public class AppManager : MonoBehaviour {
         scene = new SceneSwitcher();
     }
 
-    void LoadScene(string name) {
+    public void LoadScene(string name) {
         scene.Load(name);
     }
 }
