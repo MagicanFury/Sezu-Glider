@@ -6,7 +6,6 @@ using SceneUtility;
 public class AppManager : MonoBehaviour {
 
     private static AppManager instance;
-
     private SceneSwitcher scene;
 
     void Awake() {

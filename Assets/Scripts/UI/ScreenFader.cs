@@ -12,11 +12,9 @@ namespace SceneUtility {
         private float alpha = 0.0f;
         private int fadeDir = 1;
         private float fadeSpeed;
-        private Color color;
 
         public void Init(float fadeSpeed, Color color, Callback callback) {
             this.fadeSpeed = fadeSpeed;
-            this.color = color;
             this.callback = callback;
             fadeTexture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
             fadeTexture.SetPixels(new Color[] { color });

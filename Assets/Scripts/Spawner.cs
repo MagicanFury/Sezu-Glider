@@ -4,13 +4,33 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField]
+    private PlayerController player;
+
+    private ChunkManager chunkManager;
+
+    void Awake() {
+        chunkManager = ChunkManager.Instance;
+    }
+
+    void Start() {
+        ChunkManager.GenerateRunway(transform.position);
+        ChunkManager.Generate();
+        ChunkManager.Generate();
+        ChunkManager.Generate();
+
+        StartCoroutine(TrackPlayer(player.transform));
+    }
+    
+    IEnumerator TrackPlayer(Transform player) {
+
+        Vector3 lastSpawn = chunkManager.SpawnPosition;
+        if (Vector3.Distance(player.position, lastSpawn) < 20f) {
+            ChunkManager.Generate();
+        }
+
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(TrackPlayer(player));
+    }
+
 }

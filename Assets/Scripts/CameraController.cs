@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField]
+    private Transform player;
+
+    [SerializeField]
+    private float followSpeed = 4f;
+
+    private Vector3 offset;
+
+    void Awake() {
+        offset = transform.position - player.position;
+    }
+
+    void Update() {
+        transform.position = Vector3.Lerp(
+            transform.position,
+            player.position + offset,
+            followSpeed * Time.deltaTime);
+    }
+
 }
